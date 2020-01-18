@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
+
 
 
 namespace WebApplication1.Controllers
@@ -14,11 +16,6 @@ namespace WebApplication1.Controllers
         
         public ActionResult Index()
         {
-            /*myConfiguration = new Configuration();
-            myConfiguration.Configure();
-            mySessionFactory = myConfiguration.BuildSessionFactory();
-            mySession = mySessionFactory.OpenSession();*/
-
             ISessionFactory sessionFactory =
             new Configuration().Configure().BuildSessionFactory();
 
@@ -30,15 +27,34 @@ namespace WebApplication1.Controllers
                 {
                     var princess = new Cat
                     {
-                        Name = "Princess",
-                        Sex = 'F',
-                        Weight = 7.4f
+                        Name = "Prince",
+                        Sex = 'M',
+                        Weight = 7.64f
                     };
 
-                    session.Save(princess);
-                    tx.Commit();
+                    //session.Save(princess);
+                    //tx.Commit();
+
+                    var task = new Task
+                    {
+                        Header = "Задача"
+                    };
 
                     
+                    /* task.Description = "Описание задачи";
+                    task.CompleteDate = DateTime.Now;
+                    task.Status = "Запланирована";
+                    task.Priority = 1;
+                   task.SubTasks.Add(new SubTask
+                                    {
+                                        Description = "Запланировать",
+                                        Status = "Выполнено"
+                                    });*/
+
+                    session.Save(task);
+                    tx.Commit();
+                    
+
                 }
 
                 using (var tx = session.BeginTransaction())
@@ -54,20 +70,7 @@ namespace WebApplication1.Controllers
                     tx.Commit();
                 }
 
-                using (var tx = session.BeginTransaction())
-                {
-                    var females = session
-                        .Query<Cat>()
-                        .Where(c => c.Sex == 'F')
-                        .ToList();
-
-                    
-
-                    ViewBag.Title = females.Select(x => x.Name).FirstOrDefault();
-
-
-                    tx.Commit();
-                }
+                
 
 
             }
