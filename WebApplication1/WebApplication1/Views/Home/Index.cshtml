@@ -1,24 +1,56 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started!!!!!!!!!!!!!!!!!!!!!!</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+﻿<head>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Task/Module.js"></script>
+    <script src="~/Scripts/Task/Service.js"></script>
+    <script src="~/Scripts/Task/Controller.js"></script>
+</head>
+
+    <div ng-app="TaskApp">
+        <div ng-controller="TaskCtrl">
+            <table border="1">
+                <thead>
+                    <tr style="font-size: 20px">
+                        <th>Заголовок</th>
+                        <th>Описание</th>
+                        <th>Дата выполнения</th>
+                        <th>Статус</th>
+                        <th>Приоритет</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="t in Tasks.data">
+                    <tr style="font-size:20px">
+                        <td><input type="text" ng-model="t.Task.Header"/></td>
+                        <td><input type="text" ng-model="t.Task.Description"/></td>
+                        <td><input type="text" ng-model="t.Task.CompleteDate" /></td>
+                        <td><input type="text" ng-model="t.Task.Status"/></td>
+                        <td><input type="text" ng-model="t.Task.Priority"/></td>
+                        <td><input type="button" value="Сохранить" ng-click="UpdateTask(t.Task)"/></td>
+                        <td><input type="button" value="Удалить" ng-click="DeleteTask(t.Task.TaskId)"/></td>
+                    </tr>
+                    <tr ng-if="t.SubTask.length != 0">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Подзадача</td>
+                        <td>Статус</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="s in t.SubTask">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" value="{{s.Description}}"/></td>
+                        <td><input type="text" value="{{s.Status}}"/></td>
+                        <td><input type="button" value="Сохранить" /></td>
+                        <td><input type="button" value="Удалить" /></td>
+                     </tr>
+                            
+                        
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
-</div>
+    
+

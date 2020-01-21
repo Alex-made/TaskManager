@@ -9,11 +9,65 @@ using WebApplication1.Models;
 
 
 
+
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        
+        //read Tasks
+        public JsonResult GetTasks()
+        {
+            ISessionFactory sessionFactory =
+            new Configuration().Configure().BuildSessionFactory();
+
+            ISession session = NHibernateHelper.GetCurrentSession();
+
+            var tasks = session.Query<Task>().ToList().GroupJoin(
+                                session.Query<SubTask>().ToList(),
+                                x => x.TaskId,
+                                y => y.TaskId,
+                                (t, subt) => new
+                                {
+                                    Task = t,
+                                    SubTask = subt
+                                }).ToList();
+
+            return Json(tasks, JsonRequestBehavior.AllowGet);
+        }
+        //update Taks
+        public void UpdateTask(Task task)
+        {            
+                ISessionFactory sessionFactory =
+                new Configuration().Configure().BuildSessionFactory();
+
+                ISession session = NHibernateHelper.GetCurrentSession();
+
+                using (ITransaction tx = session.BeginTransaction())
+                {
+                    session.SaveOrUpdate(task);
+                    tx.Commit();
+                }           
+        }
+
+        public void DeleteTask(int id = 0)
+        {
+            if (id != 0)
+            {
+                ISessionFactory sessionFactory =
+                new Configuration().Configure().BuildSessionFactory();
+
+                ISession session = NHibernateHelper.GetCurrentSession();
+
+                Task task = session.Query<Task>().Where(x => x.TaskId == id).FirstOrDefault();
+
+                using (ITransaction tx = session.BeginTransaction())
+                {
+                    session.Delete(task);
+                    tx.Commit();
+                }
+            }
+        }
+
         public ActionResult Index()
         {
             ISessionFactory sessionFactory =
@@ -24,64 +78,58 @@ namespace WebApplication1.Controllers
             try
             {
                 using (ITransaction tx = session.BeginTransaction())
-                {
-                    var princess = new Cat
+                {                    
+                    
+                    SubTask subTask = new SubTask
                     {
-                        Name = "Prince",
-                        Sex = 'M',
-                        Weight = 7.64f
+                        Description = "Запланировать3",
+                        Status = "Выполняется",
+                        TaskId = 3006
                     };
-
-                    //session.Save(princess);
-                    //tx.Commit();
 
                     var task = new Task
                     {
-                        Header = "Задача"
+                        Header = "Задача1",
+                        Description = "Описание",
+                        CompleteDate = DateTime.Now.Date,
+                        Status = "Выполнено",
+                        Priority = 2,
+          
+
                     };
 
-                    
-                    /* task.Description = "Описание задачи";
-                    task.CompleteDate = DateTime.Now;
-                    task.Status = "Запланирована";
-                    task.Priority = 1;
-                   task.SubTasks.Add(new SubTask
-                                    {
-                                        Description = "Запланировать",
-                                        Status = "Выполнено"
-                                    });*/
-
-                    session.Save(task);
-                    tx.Commit();
-                    
+                    //session.Save(subTask);
+                    //tx.Commit();
 
                 }
 
                 using (var tx = session.BeginTransaction())
                 {
-                    var females = session
-                        .Query<Cat>()
-                        .Where(c => c.Sex == 'F')
-                        .ToList();
+                    
+                    //update
+                    var task = new Task
+                    {
+                        TaskId = 3005,
+                        Header = "Задача3005",
+                        Description = "Описание",
+                        CompleteDate = DateTime.Now.Date,
+                        Status = "Выполнено",
+                        Priority = 2,
 
-                    ViewBag.Title = females.Select(x=>x.Name).FirstOrDefault();
 
+                    };
+                    //session.SaveOrUpdate(task);
 
-                    tx.Commit();
+                    
+
+                    ViewBag.Title = "aaa";
+                    
                 }
-
-                
-
-
             }
             finally
             {
                 NHibernateHelper.CloseSession();
-            }
-
-            
-
-            
+            }           
 
             return View();
         }

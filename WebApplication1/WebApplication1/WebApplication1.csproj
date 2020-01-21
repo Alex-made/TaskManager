@@ -201,7 +201,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cat.cs" />
     <Compile Include="Models\SubTask.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="NHibernateHelper.cs" />
@@ -209,7 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <EmbeddedResource Include="Models\Cat.hbm.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -217,8 +215,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\SubTask.hbm.xml" />
-    <Content Include="Models\Task.hbm.xml" />
+    <EmbeddedResource Include="Models\SubTask.hbm.xml" />
+    <EmbeddedResource Include="Models\Task.hbm.xml" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -249,6 +248,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Task\Controller.js" />
+    <Content Include="Scripts\Task\Module.js" />
+    <Content Include="Scripts\Task\Service.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
