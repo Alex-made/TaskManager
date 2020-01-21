@@ -14,19 +14,21 @@ namespace WebApplication1
     {
         protected void Application_Start()
         {
-            //AutofacConfig.ConfigureContainer();
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            RegisterCustomControllerFactory();
+            //RegisterCustomControllerFactory();
+
+            // внедрение зависимостей
         }
 
-        private void RegisterCustomControllerFactory()
-        {
-            IControllerFactory factory = new CustomControllerFactory();
-            ControllerBuilder.Current.SetControllerFactory(factory);
-        }
+        //private void RegisterCustomControllerFactory()
+        //{
+        //    IControllerFactory factory = new CustomControllerFactory();
+        //    ControllerBuilder.Current.SetControllerFactory(factory);
+        //}
     }
 }
