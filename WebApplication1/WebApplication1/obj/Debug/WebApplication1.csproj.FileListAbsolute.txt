@@ -115,3 +115,8 @@ D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.Integration.Mvc.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.pdb
+D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.xml
+D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.Integration.Mvc.xml

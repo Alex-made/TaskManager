@@ -212,6 +212,9 @@
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AutofacConfig.cs" />
+    <Compile Include="Util\CustomControllerFactory.cs" />
+    <Compile Include="Util\IRepository.cs" />
+    <Compile Include="Util\MSSQLRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

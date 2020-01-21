@@ -6,14 +6,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-
-
-
+using WebApplication1.Util;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IRepository _repository;
+
+        public HomeController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
+        
         //read Tasks
         public JsonResult GetTasks()
         {
@@ -47,6 +54,11 @@ namespace WebApplication1.Controllers
                     session.SaveOrUpdate(task);
                     tx.Commit();
                 }           
+        }
+
+        public void UpdateTask1(Task task)
+        {
+            _repository.UpdateTask(task);
         }
 
         //update SubTasks
