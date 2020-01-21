@@ -49,20 +49,55 @@ namespace WebApplication1.Controllers
                 }           
         }
 
-        public void DeleteTask(int id = 0)
+        //update SubTasks
+        public void UpdateSubTask(SubTask subTask)
         {
-            if (id != 0)
+            ISessionFactory sessionFactory =
+            new Configuration().Configure().BuildSessionFactory();
+
+            ISession session = NHibernateHelper.GetCurrentSession();
+
+            using (ITransaction tx = session.BeginTransaction())
+            {
+                session.SaveOrUpdate(subTask);
+                tx.Commit();
+            }
+        }
+
+
+        public void DeleteTask(int TaskId = 0)
+        {
+            if (TaskId != 0)
             {
                 ISessionFactory sessionFactory =
                 new Configuration().Configure().BuildSessionFactory();
 
                 ISession session = NHibernateHelper.GetCurrentSession();
 
-                Task task = session.Query<Task>().Where(x => x.TaskId == id).FirstOrDefault();
+                Task task = session.Query<Task>().Where(x => x.TaskId == TaskId).FirstOrDefault();
 
                 using (ITransaction tx = session.BeginTransaction())
                 {
                     session.Delete(task);
+                    tx.Commit();
+                }
+            }
+        }
+
+        public void DeleteSubTask(int SubTaskId = 0)
+        {
+            if (SubTaskId != 0)
+            {
+                ISessionFactory sessionFactory =
+                new Configuration().Configure().BuildSessionFactory();
+
+                ISession session = NHibernateHelper.GetCurrentSession();
+
+                SubTask subTask = session.Query<SubTask>().Where(x => x.SubTaskId == SubTaskId).FirstOrDefault();
+
+                using (ITransaction tx = session.BeginTransaction())
+                {
+                    session.Delete(subTask);
                     tx.Commit();
                 }
             }
