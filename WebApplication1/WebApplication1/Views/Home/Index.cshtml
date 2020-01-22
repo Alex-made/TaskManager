@@ -51,7 +51,7 @@
                         <td></td>
                         <td><input type="text" placeholder="Новая подзадача" ng-model="subtask.Description" /></td>
                         <td><input type="text" placeholder="Статус выполнения" ng-model="subtask.Status" /></td>
-                        <td><input type="button" value="Добавить" ng-click="UpdateSubTask(subtask)" /></td>
+                        <td><input type="button" value="Добавить" ng-click="UpdateSubTask(subtask, t.Task.TaskId)" /></td>
                         <td></td>
                     </tr>
                 </tbody>
