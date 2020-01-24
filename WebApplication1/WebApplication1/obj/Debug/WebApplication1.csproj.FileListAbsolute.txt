@@ -110,7 +110,6 @@ D:\For_Infocom\WebApplication1\WebApplication1\bin\ru\System.Web.Razor.resources
 D:\For_Infocom\WebApplication1\WebApplication1\bin\ru\System.Web.WebPages.resources.dll
 D:\For_Infocom\WebApplication1\WebApplication1\bin\ru\System.Web.WebPages.Deployment.resources.dll
 D:\For_Infocom\WebApplication1\WebApplication1\bin\ru\System.Web.WebPages.Razor.resources.dll
-D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
@@ -120,3 +119,12 @@ D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.Integration.Mvc.dll
 D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.pdb
 D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.xml
 D:\For_Infocom\WebApplication1\WebApplication1\bin\Autofac.Integration.Mvc.xml
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Configuration.ConfigurationManager.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.AccessControl.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.Permissions.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.Principal.Windows.dll
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Configuration.ConfigurationManager.xml
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.AccessControl.xml
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.Permissions.xml
+D:\For_Infocom\WebApplication1\WebApplication1\bin\System.Security.Principal.Windows.xml
+D:\For_Infocom\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache

@@ -21,7 +21,7 @@
                     <tr style="font-size:20px">
                         <td><input type="text" ng-model="t.Task.Header" /></td>
                         <td><input type="text" ng-model="t.Task.Description" /></td>
-                        <td><input type="text" ng-model="t.Task.CompleteDate" /></td>
+                        <td><input type="date"  ng-model="t.Task.CompleteDate" /></td> 
                         <td><input type="text" ng-model="t.Task.Status" /></td>
                         <td><input type="text" ng-model="t.Task.Priority" /></td>
                         <td><input type="button" value="Сохранить" ng-click="UpdateTask(t.Task)" /></td>
@@ -57,12 +57,12 @@
                 </tbody>
                 <tfoot>
                     <tr style="font-size:20px">
-                        <td><input type="text" placeholder="Новая задача" ng-model="task.Header" /></td>
-                        <td><input type="text" placeholder="Описание задачи" ng-model="task.Description" /></td>
-                        <td><input type="text" placeholder="Дата выполнения" ng-model="task.CompleteDate" /></td>
-                        <td><input type="text" placeholder="Статус" ng-model="task.Status" /></td>
-                        <td><input type="text" placeholder="Приоритет" ng-model="task.Priority" /></td>
-                        <td><input type="button" value="Добавить" ng-click="UpdateTask(task)" /></td>
+                        <td><input type="text" placeholder="Новая задача" ng-model="Task.Header" /></td>
+                        <td><input type="text" placeholder="Описание задачи" ng-model="Task.Description" /></td>
+                        <td><input type="text" placeholder="Дата выполнения" ng-model="Task.CompleteDate" /></td>
+                        <td><input type="text" placeholder="Статус" ng-model="Task.Status" /></td>
+                        <td><input type="text" placeholder="Приоритет" ng-model="Task.Priority" /></td>
+                        <td><input type="button" value="Добавить" ng-click="UpdateTask(Task)" /></td>
                         <td></td>
                     </tr>                    
                 </tfoot>
