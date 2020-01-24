@@ -27,22 +27,62 @@ namespace WebApplication1.Controllers
                 y => y.TaskId,
                 (t, subt) => new
                 {
-                  Task = t,
-                  SubTask = subt
+                    Task = t,
+                    SubTask = subt
+
                 }).ToList();
 
             return Json(tasks, JsonRequestBehavior.AllowGet);
         }
         //update Taks
-        public void UpdateTask(Task task)
+        public JsonResult UpdateTask(Task task)
         {
-            _repository.UpdateTask(task);
+            try
+            {
+                _repository.UpdateTask(task);
+                return Json("Saved!", JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json("Попытка записать пустое значение в базу!", JsonRequestBehavior.AllowGet);
+            } 
+            
         }
+
+
         //update SubTasks
         public void UpdateSubTask(SubTask subTask)
         {
             _repository.UpdateSubTask(subTask);
+
+            // При заверешении подзадачи смотрим есть ли незавершённые подзадачи у родительской
+            if (subTask.Status == "Завершено")
+            {
+                List<SubTask> subTasks = _repository.SubTasks.Where(x => x.Status != "Завершено").ToList();
+
+                // Все подзадачи со статусом Завершено
+                if (subTasks.Count == 0)
+                {
+                    Task task = _repository.Tasks.Where(x => x.TaskId == subTask.TaskId).FirstOrDefault();
+                    task.Status = "Завершено";
+
+                    _repository.UpdateTask(task);
+
+                }
+            }
+
+
+
+
+
+
+
         }
+
+
+
+
         //delete Tasks
         public void DeleteTask(int TaskId = 0)
         {
