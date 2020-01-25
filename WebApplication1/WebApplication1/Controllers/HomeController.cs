@@ -25,11 +25,30 @@ namespace WebApplication1.Controllers
                 _repository.SubTasks.ToList(),
                 x => x.TaskId,
                 y => y.TaskId,
-                (t, subt) => new
+                (t, subt) => new TaskModel
                 {
-                    Task = t,
-                    SubTask = subt
-
+                    TaskId = t.TaskId,
+                    Header = t.Header,
+                    Description = t.Description,
+                    CompleteDate = t.CompleteDate,
+                    Statuses = Status.getStatuses(t.Status),
+                    Priority = t.Priority,
+                    SubTasks = subt.Select((subTask)=>
+                    new SubTaskModel
+                    {
+                        SubTaskId = subTask.SubTaskId,
+                        Description = subTask.Description,
+                        TaskId = subTask.TaskId,
+                        Statuses = Status.getStatuses(subTask.Status)
+                    }).ToList()
+                    //SubTasks = new SubTaskModel
+                    //{
+                    //    SubTaskId = subt.Select
+                    //    Description
+                    //    TaskId 
+                    //    Statuses 
+                    //}.
+                    //subt.Select(x=>x).ToList()
                 }).ToList();
 
             return Json(tasks, JsonRequestBehavior.AllowGet);
