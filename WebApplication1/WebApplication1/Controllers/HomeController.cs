@@ -76,15 +76,15 @@ namespace WebApplication1.Controllers
             _repository.UpdateSubTask(subTask);
 
             // При заверешении подзадачи смотрим есть ли незавершённые подзадачи у родительской
-            if (subTask.Status == "Завершено")
+            if (subTask.Status == Status.closeStatus)
             {
-                List<SubTask> subTasks = _repository.SubTasks.Where(x => x.Status != "Завершено").ToList();
+                List<SubTask> subTasks = _repository.SubTasks.Where(x => x.Status != Status.closeStatus).ToList();
 
-                // Все подзадачи со статусом Завершено
+                // Все подзадачи со статусом Выполнена
                 if (subTasks.Count == 0)
                 {
                     Task task = _repository.Tasks.Where(x => x.TaskId == subTask.TaskId).FirstOrDefault();
-                    task.Status = "Завершено";
+                    task.Status = Status.closeStatus;
 
                     _repository.UpdateTask(task);
 
@@ -107,7 +107,7 @@ namespace WebApplication1.Controllers
         {
             if (TaskId != 0)
             {
-                Task task = _repository.Tasks.Select(x => x).FirstOrDefault();
+                Task task = _repository.Tasks.Where(x => x.TaskId == TaskId).FirstOrDefault();
 
                 _repository.DeleteTask(task);
             }

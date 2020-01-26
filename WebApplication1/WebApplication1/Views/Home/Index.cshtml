@@ -19,15 +19,19 @@
                 </thead>
                 <tbody ng-repeat="t in Tasks.data">
                     <tr style="font-size:20px">
-                        <td><input type="text" ng-model="t.Task.Header" /></td>
-                        <td><input type="text" ng-model="t.Task.Description" /></td>
-                        <td><input type="date"  ng-model="t.Task.CompleteDate" /></td> 
-                        <td><input type="text" ng-model="t.Task.Status" /></td>
-                        <td><input type="text" ng-model="t.Task.Priority" /></td>
-                        <td><input type="button" value="Сохранить" ng-click="UpdateTask(t.Task)" /></td>
-                        <td><input type="button" value="Удалить" ng-click="DeleteTask(t.Task.TaskId)" /></td>
+                        <td><input type="text" ng-model="t.Header" required/></td>
+                        <td><input type="text" ng-model="t.Description" /></td>
+                        <td><input type="date" ng-model="t.CompleteDate" /></td>
+                        <td>
+                            <select ng-model="t.Status" ng-init="t.Status = t.Statuses[0]">   <!--нулевое значение статуса - текущий статус!-->
+                               <option ng-repeat="st in t.Statuses">{{st}}</option>
+                            </select>
+                        </td>                                                 <!--<input type="text" ng-model="t.Status" />-->
+                        <td><input type="text" ng-model="t.Priority" /></td>
+                        <td><input type="button" value="Сохранить" ng-click="UpdateTask(t)" /></td>
+                        <td><input type="button" value="Удалить" ng-click="DeleteTask(t.TaskId)" /></td>
                     </tr>
-                    <tr ng-if="t.SubTask.length != 0">
+                    <tr ng-if="t.SubTasks.length != 0">
                         <td></td>
                         <td></td>
                         <td></td>
@@ -36,13 +40,17 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-repeat="s in t.SubTask">
+                    <tr ng-repeat="s in t.SubTasks">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td><input type="text" ng-model="s.Description" /></td>
-                        <td><input type="text" ng-model="s.Status" /></td>
-                        <td><input type="button" value="Сохранить" ng-click="UpdateSubTask(s, s.TaskId)" /></td>
+                        <td>
+                            <select ng-model="s.Status" ng-init="s.Status = s.Statuses[0]">                                
+                                <option ng-repeat="st in s.Statuses">{{st}}</option>
+                            </select>
+                        </td>
+                        <td><input type="button" value="Сохранить" ng-click="UpdateSubTask(s, s.TaskId)" /></td> <!--s.TaskId - taskId текущей подзадачи-->
                         <td><input type="button" value="Удалить" ng-click="DeleteSubTask(s.SubTaskId)" /></td>
                     </tr>
                     <tr>
@@ -50,8 +58,12 @@
                         <td></td>
                         <td></td>
                         <td><input type="text" placeholder="Новая подзадача" ng-model="subtask.Description" /></td>
-                        <td><input type="text" placeholder="Статус выполнения" ng-model="subtask.Status" /></td>
-                        <td><input type="button" value="Добавить" ng-click="UpdateSubTask(subtask, t.Task.TaskId)" /></td>
+                        <td>
+                            <select ng-model="subtask.Status" ng-init="subtask.Status = 'Запланирована'">
+                                <option>Запланирована</option>
+                            </select>
+                        </td>
+                        <td><input type="button" value="Добавить" ng-click="UpdateSubTask(subtask, t.TaskId)" /></td> <!--t.TaskId - taskId родительской задачи-->
                         <td></td>
                     </tr>
                 </tbody>
@@ -59,8 +71,12 @@
                     <tr style="font-size:20px">
                         <td><input type="text" placeholder="Новая задача" ng-model="Task.Header" /></td>
                         <td><input type="text" placeholder="Описание задачи" ng-model="Task.Description" /></td>
-                        <td><input type="text" placeholder="Дата выполнения" ng-model="Task.CompleteDate" /></td>
-                        <td><input type="text" placeholder="Статус" ng-model="Task.Status" /></td>
+                        <td><input type="date" ng-model="Task.CompleteDate" /></td>
+                        <td>
+                            <select ng-model="Task.Status" ng-init="Task.Status = 'Запланирована'">
+                                <option>Запланирована</option>
+                            </select>
+                        </td>  
                         <td><input type="text" placeholder="Приоритет" ng-model="Task.Priority" /></td>
                         <td><input type="button" value="Добавить" ng-click="UpdateTask(Task)" /></td>
                         <td></td>
